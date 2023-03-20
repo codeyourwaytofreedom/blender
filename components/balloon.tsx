@@ -1,6 +1,6 @@
-import { Point, PointMaterial, Points, Svg } from "@react-three/drei";
+import { Line, Point, PointMaterial, Points, Svg, useTexture } from "@react-three/drei";
 import * as THREE from 'three';
-import { DoubleSide, ExtrudeGeometry } from "three";
+import { DoubleSide, ExtrudeGeometry, Line3 } from "three";
 import arrow from "../public/arrow.svg";
 
 const x = 0, y = 0;
@@ -39,6 +39,7 @@ const point = new THREE.Vector3(0, 0, 0);
 					.quadraticCurveTo( 5, 50, 20, 40 );
 
 				smileyShape.holes.push( smileyMouthPath );
+
 const arcShape = new THREE.Shape()
     .moveTo( 50, 10 )
     .absarc( 10, 10, 40, 0, Math.PI * 2, false );
@@ -60,27 +61,18 @@ const leave = new THREE.Shape()
 const points = leave.getPoints();
 const geometryPoints = new THREE.BufferGeometry().setFromPoints( points );
 
-const spacedPoints = leave.getSpacedPoints( 5 );
+const spacedPoints = leave.getSpacedPoints( 500 );
 const geometrySpacedPoints = new THREE.BufferGeometry().setFromPoints( spacedPoints );
 
 
-
 const Balloon = () => {
-    
+    const texture = useTexture("book.jpg")
     return ( 
-
         <>
-        
-        <mesh scale={0.05}>
-            <points args={[geometryPoints]}>
-                <pointsMaterial color={"green"} size={0.1}/>
-            </points>
-        </mesh>
-{/*         <mesh scale={0.02} position={[1,0,0]}>
+        <mesh scale={0.02} position={[1,0,0]}>
             <shapeGeometry args={[leave]} />
-            <meshBasicMaterial attach="material" color="black" transparent={true} opacity={0.8} side={DoubleSide} />
-        </mesh> */}
-        
+            <meshBasicMaterial  map={texture} side={DoubleSide} />
+        </mesh>
         </>
      );
 }
@@ -88,6 +80,43 @@ const Balloon = () => {
 export default Balloon;
 
 
+
+
+
+
+
+
+
+{/*         <mesh scale={0.02} position={[1,0,0]}>
+            <shapeGeometry args={[leave]} />
+            <meshBasicMaterial attach="material" color="black" transparent={true} opacity={0.8} side={DoubleSide} />
+        </mesh> */}
+
+
+/*         <mesh scale={0.02} position={[1,0,0]}>
+            <extrudeBufferGeometry args={[fishShape, extrudeSettings]}/>            
+            <meshBasicMaterial attach="material" color="black" transparent={true} opacity={0.8} side={DoubleSide} />
+        </mesh> */
+
 {/* <Svg src={"/arrow.svg"} scale={0.01}/> */}
 
-{/* <shapeGeometry args={[fishShape]} /> */}
+
+{/* <mesh scale={0.05}>
+<points args={[geometrySpacedPoints]}>
+    <pointsMaterial color={"green"} size={0.04}/>
+</points>
+</mesh> */}
+
+
+{/* <mesh scale={0.05}>
+<lineSegments args={[geometrySpacedPoints]}>
+    <lineBasicMaterial color={"crimson"}/>
+</lineSegments>
+</mesh> */}
+
+
+{/* <mesh scale={0.05}>
+<Line points={points}>
+    <lineBasicMaterial color={"crimson"} />
+</Line>
+</mesh> */}

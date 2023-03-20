@@ -59,3 +59,35 @@ const geometrySpacedPoints = new THREE.BufferGeometry().setFromPoints( spacedPoi
 <points args={[geometryPoints]}>
     <pointsMaterial color={"green"} size={10}/>
 </points>
+
+
+// lines with segment
+<mesh scale={0.05}>
+    <lineSegments args={[geometrySpacedPoints]}>
+        <lineBasicMaterial color={"crimson"}/>
+    </lineSegments>
+</mesh>
+
+
+
+//line
+const leave = new THREE.Shape()
+    .moveTo(0, 0)
+    .quadraticCurveTo(10, -20, 30, -20)
+    .quadraticCurveTo(50, -20, 60, 0)
+    .quadraticCurveTo(50, 20, 30, 20)
+    .quadraticCurveTo(10, 20, 0, 0)
+const points = leave.getPoints();
+
+<mesh scale={0.05}>
+    <Line points={points}>
+        <lineBasicMaterial color={"crimson"} />
+    </Line>
+</mesh>
+
+// add texture to the shape
+texture must be inside the arrow function
+<mesh scale={0.02} position={[1,0,0]}>
+    <shapeGeometry args={[leave]} />
+    <meshBasicMaterial  map={texture} side={DoubleSide} />
+</mesh>
