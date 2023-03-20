@@ -1,6 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { NextPage } from "next";
+import { GridHelper } from "three";
 import h from "../styles/home.module.css";
 import Balloon from "./balloon";
 

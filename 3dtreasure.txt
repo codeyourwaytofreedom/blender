@@ -1,0 +1,61 @@
+import { Svg } from "@react-three/drei";
+<Svg src={"/arrow.svg"} scale={0.01}/>
+
+
+const x = 0, y = 0;
+const extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+const fishShape = new THREE.Shape()
+					.moveTo( x, y )
+					.quadraticCurveTo( x + 50, y - 80, x + 90, y - 10 )
+					.quadraticCurveTo( x + 100, y - 10, x + 115, y - 40 )
+					.quadraticCurveTo( x + 115, y, x + 115, y + 40 )
+					.quadraticCurveTo( x + 100, y + 10, x + 90, y + 10 )
+					.quadraticCurveTo( x + 50, y + 80, x, y );
+
+//inside mesh
+<shapeGeometry args={[fishShape]} />
+<extrudeBufferGeometry args={[fishShape, extrudeSettings]}/>
+
+
+//leave shape
+const leave = new THREE.Shape()
+    .moveTo(0, 0)
+    .quadraticCurveTo(10, -20, 30, -20)
+    .quadraticCurveTo(50, -20, 60, 0)
+    .quadraticCurveTo(50, 20, 30, 20)
+    .quadraticCurveTo(10, 20, 0, 0)
+
+// path = removal from shape
+const smileyMouthPath = new THREE.Path()
+    .moveTo( 20, 40 )
+    .quadraticCurveTo( 40, 60, 60, 40 )
+    .bezierCurveTo( 70, 45, 70, 50, 60, 60 )
+    .quadraticCurveTo( 40, 80, 20, 60 )
+    .quadraticCurveTo( 5, 50, 20, 40 );
+
+örnek
+arcShape.holes.push( holePath );
+.holes.push()
+
+
+
+// points from shape
+spaced or non-spaced 
+Get points from shape
+Show points in points component
+const leave = new THREE.Shape()
+    .moveTo(0, 0)
+    .quadraticCurveTo(10, -20, 30, -20)
+    .quadraticCurveTo(50, -20, 60, 0)
+    .quadraticCurveTo(50, 20, 30, 20)
+    .quadraticCurveTo(10, 20, 0, 0)
+
+const points = leave.getPoints();
+const geometryPoints = new THREE.BufferGeometry().setFromPoints( points );
+
+const spacedPoints = leave.getSpacedPoints( 5 );
+const geometrySpacedPoints = new THREE.BufferGeometry().setFromPoints( spacedPoints );
+
+<points args={[geometryPoints]}>
+    <pointsMaterial color={"green"} size={10}/>
+</points>
