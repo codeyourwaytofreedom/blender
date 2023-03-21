@@ -1,5 +1,7 @@
 .home {
   border: 2px solid maroon;
-  width: 1400px;
+  display: grid;
+  align-items: flex-start;
+  width: 1600px;
   height: 700px;
 }/*# sourceMappingURL=home.module.css.map */
