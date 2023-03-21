@@ -2,9 +2,61 @@ import { Line, Point, PointMaterial, Points, Svg, useTexture } from "@react-thre
 import * as THREE from 'three';
 import { DoubleSide, ExtrudeGeometry, Line3 } from "three";
 import arrow from "../public/arrow.svg";
+import { Vector2 } from "@react-three/fiber";
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
-const x = 0, y = 0;
+const loader = new SVGLoader();
+const shapes = [];
+loader.load(
+	// resource URL
+	'/arrow.svg',
+	// called when the resource is loaded
+	function ( data ) {
+
+		const paths = data.paths;
+        console.log(paths)
+
+        for ( let i = 0; i < paths.length; i ++ ) {
+
+			const path = paths[ i ];
+            //react equivalent
+            const mat = <meshBasicMaterial side={DoubleSide} depthWrite={false} color={path.color} />
+
+			const material = new THREE.MeshBasicMaterial( {
+				color: path.color,
+				side: THREE.DoubleSide,
+				depthWrite: false
+			} );
+
+			const shapes = SVGLoader.createShapes( path );
+
+			for ( let j = 0; j < shapes.length; j ++ ) {
+
+				const shape = shapes[ j ];
+				const geometry = new THREE.ShapeGeometry( shape );
+				const mesh = new THREE.Mesh( geometry, material );
+			}
+
+		}
+	},
+    
+	// called when loading is in progresses
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+		console.log( 'An error happened' );
+
+	}
+);
+
 const extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+const x = 0;
+const y = 0;
 const fishShape = new THREE.Shape()
 					.moveTo( x, y )
 					.quadraticCurveTo( x + 50, y - 80, x + 90, y - 10 )
@@ -13,65 +65,13 @@ const fishShape = new THREE.Shape()
 					.quadraticCurveTo( x + 100, y + 10, x + 90, y + 10 )
 					.quadraticCurveTo( x + 50, y + 80, x, y );
 
-
-
-    const circleRadius = 40;
-    const circleShape = new THREE.Shape()
-    .moveTo( 0, circleRadius )
-    .quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 )
-    .quadraticCurveTo( circleRadius, - circleRadius, 0, - circleRadius )
-    .quadraticCurveTo( - circleRadius, - circleRadius, - circleRadius, 0 )
-    .quadraticCurveTo( - circleRadius, circleRadius, 0, circleRadius );
-const point = new THREE.Vector3(0, 0, 0);
-
-                const smileyShape = new THREE.Shape()
-                .moveTo( 20, 40 )
-                .quadraticCurveTo( 40, 60, 60, 40 )
-                .bezierCurveTo( 70, 45, 70, 50, 60, 60 )
-                .quadraticCurveTo( 40, 80, 20, 60 )
-                .quadraticCurveTo( 5, 50, 20, 40 );
-
-				const smileyMouthPath = new THREE.Path()
-					.moveTo( 20, 40 )
-					.quadraticCurveTo( 40, 60, 60, 40 )
-					.bezierCurveTo( 70, 45, 70, 50, 60, 60 )
-					.quadraticCurveTo( 40, 80, 20, 60 )
-					.quadraticCurveTo( 5, 50, 20, 40 );
-
-				smileyShape.holes.push( smileyMouthPath );
-
-const arcShape = new THREE.Shape()
-    .moveTo( 50, 10 )
-    .absarc( 10, 10, 40, 0, Math.PI * 2, false );
-
-const holePath = new THREE.Path()
-    .moveTo( 20, 10 )
-    .absarc( 10, 10, 10, 0, Math.PI * 2, true );
-
-arcShape.holes.push( holePath );
-
-
-const leave = new THREE.Shape()
-    .moveTo(0, 0)
-    .quadraticCurveTo(10, -20, 30, -20)
-    .quadraticCurveTo(50, -20, 60, 0)
-    .quadraticCurveTo(50, 20, 30, 20)
-    .quadraticCurveTo(10, 20, 0, 0)
-
-const points = leave.getPoints();
-const geometryPoints = new THREE.BufferGeometry().setFromPoints( points );
-
-const spacedPoints = leave.getSpacedPoints( 500 );
-const geometrySpacedPoints = new THREE.BufferGeometry().setFromPoints( spacedPoints );
-
-
 const Balloon = () => {
     const texture = useTexture("book.jpg")
     return ( 
         <>
         <mesh scale={0.02} position={[1,0,0]}>
-            <shapeGeometry args={[leave]} />
-            <meshBasicMaterial  map={texture} side={DoubleSide} />
+            <extrudeBufferGeometry args={[fishShape, extrudeSettings]}/>            
+            <meshBasicMaterial attach="material" color="black" transparent={true} opacity={0.8} side={DoubleSide} />
         </mesh>
         </>
      );
