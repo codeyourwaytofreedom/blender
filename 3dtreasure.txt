@@ -126,3 +126,48 @@ const shape1 = new THREE.Shape( pts1 );
 
 //vector2 (x,y), vector3 (x,y,z)
 İmportant 
+
+
+
+
+
+
+
+// SVG extruder and texture applier - Big Thing for future projects 
+import { useTexture } from "@react-three/drei";
+import { Shape } from "three";
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+const loader = new SVGLoader();
+import {RepeatWrapping } from 'three';
+
+let test:Shape[];
+loader.load(
+	// resource URL
+	'/btf.svg',
+	// called when the resource is loaded
+	function ( data ) {
+
+		const paths = data.paths;
+        console.log(paths.length)
+        const s = SVGLoader.createShapes(data.paths[1]);
+        test = s;
+	}
+);
+
+const extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+const Balloon = () => {
+    const texture = useTexture("but.jpg");
+    texture.wrapS = RepeatWrapping;
+    texture.wrapT = RepeatWrapping;
+    texture.repeat.set( 0.008, 0.008 );
+    return ( 
+        <>
+        <mesh scale={0.005} rotation={[0,0,Math.PI]} >
+            <extrudeBufferGeometry args={[test, extrudeSettings]}/>            
+            <meshBasicMaterial map={texture}/>
+        </mesh> 
+        </>
+     );
+}
+export default Balloon;

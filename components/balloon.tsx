@@ -1,15 +1,10 @@
-import { Line, Point, PointMaterial, Points, Svg, useTexture } from "@react-three/drei";
-import * as THREE from 'three';
-import { DoubleSide, ExtrudeGeometry, Line3 } from "three";
-import arrow from "../public/arrow.svg";
-import { Vector2 } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
+import { Shape } from "three";
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
-import { useEffect, useState } from "react";
-import { Text } from "@react-three/drei";
 const loader = new SVGLoader();
-const shps = [];
+import {RepeatWrapping } from 'three';
 
-let test;
+let test:Shape[];
 loader.load(
 	// resource URL
 	'/btf.svg',
@@ -20,66 +15,25 @@ loader.load(
         console.log(paths.length)
         const s = SVGLoader.createShapes(data.paths[1]);
         test = s;
-
-/*         for ( let i = 0; i < paths.length; i ++ ) {
-
-			const path = paths[ i ];
-            //react equivalent
-            const p = [];
-            const mat = <meshBasicMaterial side={DoubleSide} depthWrite={false} color={path.color} />
-			const material = new THREE.MeshBasicMaterial( {
-				color: path.color,
-				side: THREE.DoubleSide,
-				depthWrite: false
-			} );
-
-			const shapes = SVGLoader.createShapes( path );
-
-			for ( let j = 0; j < shapes.length; j ++ ) {
-
-                const mmesh = 
-                            <mesh>
-                                <shapeGeometry args={[shapes[ j ]]}/>
-                                {mat}
-                            </mesh>
-                p.push(shapes[ j ])                
-			}
-		} */
-	},
-    
-	// called when loading is in progresses
-	function ( xhr ) {
-
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-	},
-	// called when loading has errors
-	function ( error ) {
-
-		console.log( 'An error happened' );
-
 	}
 );
 
 const extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
-
 const Balloon = () => {
-    const texture = useTexture("book.jpg");
-    const [meshes, setMeshes] = useState([]);
-    useEffect(()=>{
-        shps.map(s=> console.log(s))
-    },[])
+    const texture = useTexture("but.jpg");
+    texture.wrapS = RepeatWrapping;
+    texture.wrapT = RepeatWrapping;
+    texture.repeat.set( 0.008, 0.008 );
     return ( 
         <>
-        <mesh scale={0.001} position={[0,0,0]}>
+        <mesh scale={0.005} rotation={[0,0,Math.PI]} >
             <extrudeBufferGeometry args={[test, extrudeSettings]}/>            
-            <meshBasicMaterial color={"darkorange"} side={DoubleSide} />
+            <meshBasicMaterial map={texture}/>
         </mesh> 
         </>
      );
 }
- 
 export default Balloon;
 
 
