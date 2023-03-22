@@ -11,7 +11,7 @@ import MyComponent from "./Instances";
 const Home_page = () => {
     return ( 
         <div className={h.home}>
-            <Canvas>
+            <Canvas /* camera={{ position: [0, 40, 0], fov: 45 }} */>
                 {/* <Balloon /> */}
                 {/* <Butterfly_flying /> */}
                 <MyComponent />
