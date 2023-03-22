@@ -6,13 +6,15 @@ import h from "../styles/home.module.css";
 import Balloon from "./balloon";
 import Butterfly1 from "./butterfly1";
 import Butterfly_flying from "./Butterfly_flying";
+import MyComponent from "./Instances";
 
 const Home_page = () => {
     return ( 
         <div className={h.home}>
             <Canvas>
                 {/* <Balloon /> */}
-                <Butterfly_flying />
+                {/* <Butterfly_flying /> */}
+                <MyComponent />
 
                 <OrbitControls                 
                     minPolarAngle={Math.PI/2}

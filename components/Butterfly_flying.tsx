@@ -1,4 +1,4 @@
-import { useTexture } from "@react-three/drei";
+import { Instance, Instances, useTexture } from "@react-three/drei";
 import { Group, Mesh, Shape } from "three";
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 const loader = new SVGLoader();
@@ -49,30 +49,26 @@ const Butterfly_flying = () => {
     const [excluded, setExcluded] = useState<number[]>([]);
     const [angle, setAngle] = useState(-0.6);
     const [direction, setDirection] = useState(0.1);
-    const [start, setStart] = useState(false)
   
-    useEffect(() => {
+/*     useEffect(() => {
       const interval = setTimeout(() => {
 
-        if (angle > -0.4 && start) {
+        if (angle > -0.4) {
           setDirection(-0.1);
-        } else if (angle < -0.9 && start) {
+        } else if (angle < -0.9) {
           setDirection(0.1);
         }
         console.log(angle + direction)
-        if(start){
-            setAngle((angle + direction));
-        }
-        
+        setAngle((angle + direction));
 
       }, 50);
   
       return () => clearInterval(interval);
-    }, [start, angle, direction]);
+    }, [angle, direction]); */
 
     return ( 
         <>
-        <group scale={0.3} onPointerEnter={()=>setStart(true)} onPointerLeave={()=>setStart(false)}>
+        <group scale={0.5}>
 
 
         <group scale={2} rotation={[0,angle,0]} position={[-1.1-angle/3,0,0+angle/7]}>

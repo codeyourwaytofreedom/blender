@@ -1,4 +1,4 @@
-import { useTexture } from "@react-three/drei";
+import { Instances, useTexture } from "@react-three/drei";
 import { Group, Mesh, Shape } from "three";
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 const loader = new SVGLoader();
