@@ -4,11 +4,13 @@ import { NextPage } from "next";
 import { GridHelper } from "three";
 import h from "../styles/home.module.css";
 import Balloon from "./balloon";
+import Butterfly1 from "./butterfly1";
 
 const Home_page = () => {
     return ( 
         <div className={h.home}>
             <Canvas>
+                {/* <Butterfly1 /> */}
                 <Balloon />
                 <OrbitControls />
             </Canvas>
