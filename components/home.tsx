@@ -5,14 +5,19 @@ import { GridHelper } from "three";
 import h from "../styles/home.module.css";
 import Balloon from "./balloon";
 import Butterfly1 from "./butterfly1";
+import Butterfly_flying from "./Butterfly_flying";
 
 const Home_page = () => {
     return ( 
         <div className={h.home}>
             <Canvas>
-                {/* <Butterfly1 /> */}
-                <Balloon />
-                <OrbitControls />
+                {/* <Balloon /> */}
+                <Butterfly_flying />
+
+                <OrbitControls                 
+                    minPolarAngle={Math.PI/2}
+                    maxPolarAngle={Math.PI/2}  
+                />
             </Canvas>
         </div>
       );

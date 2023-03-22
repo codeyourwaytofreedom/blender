@@ -19,7 +19,6 @@ const left_wing = [6];
 const right_wing = [12];
 const core = [15];
 
-const test = [6,12]
 
 
 loader.load(
@@ -41,41 +40,42 @@ loader.load(
 	}
 );
 
-const extrudeSettings = { depth: 2, bevelEnabled: true, bevelSegments: 9, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
+const extrudeSettings = { depth: 4, bevelEnabled: true, bevelSegments: 9, steps: 2, bevelSize: 1, bevelThickness: 1 };
+const extrudeSettings2 = { depth: 25, bevelEnabled: true, bevelSegments: 9, steps: 2, bevelSize: 1, bevelThickness: 1 };
 const remaining:Number[] = [];
 
-const Balloon = () => {
-    //const texture = useTexture("but.jpg");
-    let texture;
-    let col;
-    const [excluded, setExcluded] = useState<number[]>([]);
-    const lw = useRef<Group>(null);
+const Butterfly_flying = () => {
 
-    const [angle, setAngle] = useState(0);
+    const [excluded, setExcluded] = useState<number[]>([]);
+    const [angle, setAngle] = useState(-0.6);
     const [direction, setDirection] = useState(0.1);
+    const [start, setStart] = useState(false)
   
     useEffect(() => {
       const interval = setTimeout(() => {
 
-        if (angle > 0.8) {
+        if (angle > -0.4 && start) {
           setDirection(-0.1);
-        } else if (angle < 0.1) {
+        } else if (angle < -0.9 && start) {
           setDirection(0.1);
         }
-        setAngle((angle + direction));
+        console.log(angle + direction)
+        if(start){
+            setAngle((angle + direction));
+        }
+        
+
       }, 50);
   
       return () => clearInterval(interval);
-    }, [angle, direction]);
+    }, [start, angle, direction]);
 
     return ( 
         <>
-        <group scale={2} rotation={[0,angle,0]} position={[-1,0,0]}>
-            <mesh position={[0,0,0]}>
-                <boxGeometry args={[0.1,0.1,0.1]} />
-                <meshBasicMaterial color={"black"}/>
-            </mesh>
+        <group scale={0.3} onPointerEnter={()=>setStart(true)} onPointerLeave={()=>setStart(false)}>
+
+
+        <group scale={2} rotation={[0,angle,0]} position={[-1.1-angle/3,0,0+angle/7]}>
             <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
                 <group>
                 {
@@ -92,8 +92,15 @@ const Balloon = () => {
                         </mesh> 
                         )
                     }
-    {/*                 {
-                        blocks.map ((b,i) => i === 6 && 
+                </group>
+            </group>        
+        </group>
+
+        <group scale={2} rotation={[-Math.PI/25,0,0]} position={[-1,0,-angle]}>
+            <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
+                <group>
+                {
+                        blocks.map ((b,i) => i === 15 && 
                         <mesh scale={sscale} key={i}  onClick={(e)=>{
                             e.stopPropagation();
                             console.log(i); 
@@ -101,19 +108,16 @@ const Balloon = () => {
                             remaining.push(i);
                             console.log(remaining)
                             }}>
-                            <extrudeGeometry args={[b.shp, extrudeSettings]}/>            
-                            <meshBasicMaterial color={"navy"} />
+                            <extrudeGeometry args={[b.shp, extrudeSettings2]}/>            
+                            <meshBasicMaterial color={"gold"} />
                         </mesh> 
                         )
-                    } */}
+                    }
                 </group>
             </group>        
         </group>
-        <group scale={2} rotation={[0,-angle,0]} position={[1,0,0]}>
-            <mesh position={[0,0,0]}>
-                <boxGeometry args={[0.1,0.1,0.1]} />
-                <meshBasicMaterial color={"black"}/>
-            </mesh>
+
+        <group scale={2} rotation={[0,-angle,0]} position={[1.1+angle/3,0,0+angle/7]}>
             <group rotation={[Math.PI,0,0]} position={[-1.8,1.3,0]}>
                 <group>
                     {
@@ -133,55 +137,10 @@ const Balloon = () => {
                 </group>
             </group>        
         </group>
+
+        </group>
         </>
      );
 }
-export default Balloon;
+export default Butterfly_flying;
 
-
-
-
-
-
-/* onClick={(e)=>{
-    e.stopPropagation();
-    console.log(i); 
-    setExcluded([...excluded, i]);
-    remaining.push(i);
-    console.log(remaining)
-    }}  */
-
-
-{/*         <mesh scale={0.02} position={[1,0,0]}>
-            <shapeGeometry args={[leave]} />
-            <meshBasicMaterial attach="material" color="black" transparent={true} opacity={0.8} side={DoubleSide} />
-        </mesh> */}
-
-
-/*         <mesh scale={0.02} position={[1,0,0]}>
-            <extrudeBufferGeometry args={[fishShape, extrudeSettings]}/>            
-            <meshBasicMaterial attach="material" color="black" transparent={true} opacity={0.8} side={DoubleSide} />
-        </mesh> */
-
-{/* <Svg src={"/arrow.svg"} scale={0.01}/> */}
-
-
-{/* <mesh scale={0.05}>
-<points args={[geometrySpacedPoints]}>
-    <pointsMaterial color={"green"} size={0.04}/>
-</points>
-</mesh> */}
-
-
-{/* <mesh scale={0.05}>
-<lineSegments args={[geometrySpacedPoints]}>
-    <lineBasicMaterial color={"crimson"}/>
-</lineSegments>
-</mesh> */}
-
-
-{/* <mesh scale={0.05}>
-<Line points={points}>
-    <lineBasicMaterial color={"crimson"} />
-</Line>
-</mesh> */}
