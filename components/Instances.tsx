@@ -3,12 +3,26 @@ import { type } from "os";
 import { useMemo } from "react";
 import { InstancedMesh, MeshBasicMaterial, BoxGeometry,Matrix4,Vector3, Color } from "three";
 
+import { ExtrudeGeometry, Shape } from 'three';
 
 interface InstancedCubesProps {
     count: number;
   }
   
 const InstancedCubes:NextPage<InstancedCubesProps> = ({count}) => {
+    const shape = new Shape();
+shape.moveTo(0, 0);
+shape.lineTo(0, 1);
+shape.lineTo(1, 1);
+shape.lineTo(1, 0);
+shape.lineTo(0, 0);
+
+const extrudeSettings = {
+    depth: 0.5,
+    bevelEnabled: false,
+  };
+
+  
   const geometry = useMemo(() => new BoxGeometry(0.5,0.5,0.5), []);
   const material = useMemo(() => new MeshBasicMaterial({ }), []);
   const meshRef = useMemo(() => new InstancedMesh(geometry, material, count), [count]);
