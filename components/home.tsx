@@ -6,6 +6,7 @@ import { Suspense, useState } from "react";
 import { Socket } from "socket.io-client";
 import io from "socket.io-client";
 import { useEffect } from "react";
+import h from "../styles/home.module.css";
 
 const socket: Socket = io("http://localhost:80");
 socket.connect();
@@ -23,7 +24,7 @@ const Home_page = () => {
     
         return () => {
           socket.off('connect');
-          socket.off('disconnect');
+          socket.off('scaling_index');
         };
       }, []);
       const handle_click = () => {
@@ -31,16 +32,14 @@ const Home_page = () => {
       }
     return ( 
         <>
-        <div style={{height:"100vh"}}>
+        <div className={h.home}>
             <button onClick={handle_click}>Random Scaling Index from Node Backend</button>
             <h1>{scaling_index.toString().substring(0,4)}</h1>
-            <Suspense fallback={null}>
                 <Canvas>
                     <Cube scaling_index={scaling_index??1}/>
                     <Sphere scaling_index={scaling_index??1} />
                     <Cylinder scaling_index={scaling_index??1} />
                 </Canvas>
-            </Suspense>
         </div> 
         </>
 
