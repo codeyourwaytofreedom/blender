@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import h from "../styles/home.module.css";
 import Cube from "./Cube";
 import Sphere from "./Sphere";
 import Cylinder from "./Cylinder";
@@ -14,7 +13,7 @@ const Home_page = () => {
     socket.connect();
     return ( 
         <>
-        <div className={h.home}>
+        <div>
             <Suspense fallback={null}>
                 <Canvas>
                     <Cube scaling_index={scaling_index}/>
