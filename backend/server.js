@@ -16,7 +16,7 @@ const io = new Server(server, {
   
 const min = 1;
 const max = 2.75;
-
+console.log(8)
 
 app.use(cors({ origin: true, credentials: true }));
 
