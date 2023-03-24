@@ -19,7 +19,7 @@ const Cylinder:NextPage<scaling> = ({scaling_index}) => {
     })
     return ( 
         <>
-        <mesh position={[scaling_index*2,0,0]} rotation={[0,0,0]} ref={cylinder}>
+        <mesh position={[scaling_index*2,0,0]} rotation={[-0.1,0,0]} ref={cylinder}>
             <cylinderGeometry args={[scaling_index/2,scaling_index/2,scaling_index,90]}/>
             <meshBasicMaterial map={texture} color={"darkorange"}/>
         </mesh>

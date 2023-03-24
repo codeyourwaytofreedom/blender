@@ -13,8 +13,8 @@ const io = new Server(server, {
   }
 });
   
-const min = 0.5;
-const max = 2;
+const min = 1;
+const max = 2.75;
 
 
 app.use(cors({ origin: true, credentials: true }));
