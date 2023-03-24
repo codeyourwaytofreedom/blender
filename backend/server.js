@@ -8,7 +8,8 @@ const { Server } = require("socket.io");
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://good-ai-task.vercel.app/", "http://localhost:3000"],
+    origin: ["https://good-ai-task.vercel.app/","https://good-ai-task-codeyourwaytofreedom.vercel.app/",
+     "http://localhost:3000",  "https://good-ai-task-git-main-codeyourwaytofreedom.vercel.app/","https://good-ai-task-73rfdmjax-codeyourwaytofreedom.vercel.app/"],
     methods: ["GET", "POST"]
   }
 });
