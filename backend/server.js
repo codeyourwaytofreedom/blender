@@ -24,6 +24,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(9000, () => {
-  console.log('listening on 9000');
+server.listen(80, () => {
+  console.log('listening on 80');
 });
