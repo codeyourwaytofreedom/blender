@@ -1,5 +1,13 @@
 .home {
-  display: grid;
-  align-items: flex-start;
-  height: 97vh;
+  display: flex;
+  width: 100%;
+  border: 2px solid black;
+  position: fixed;
+  top: 0;
+  height: 90vh;
+}
+
+.arrows {
+  border: 2px solid red;
+  height: 700px;
 }/*# sourceMappingURL=home.module.css.map */

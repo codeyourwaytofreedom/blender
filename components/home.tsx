@@ -4,25 +4,29 @@ import { NextPage } from "next";
 import { GridHelper } from "three";
 import h from "../styles/home.module.css";
 import ARGE from "./arge";
+import Arrows from "./arrows";
 import Butterfly1 from "./butterfly1";
 import Butterfly_flying from "./Butterfly_flying";
+import Cube from "./Cube";
 import MyComponent from "./Instances";
+import Sphere from "./Sphere";
+import Cylinder from "./Cylinder";
+import { Suspense } from "react";
 
 const Home_page = () => {
     return ( 
+        <>
         <div className={h.home}>
-            <Canvas /* camera={{ position: [0, 40, 0], fov: 45 }} */>
+            <Suspense fallback={null}>
+                <Canvas>
+                    <Cube scaling_index={1}/>
+                    <Sphere scaling_index={1} />
+                    <Cylinder scaling_index={1} />
+                </Canvas>
+            </Suspense>
+        </div> 
+        </>
 
-                <Butterfly1 />
-
-                {/* <MyComponent /> */}
-
-                <OrbitControls                 
-                    minPolarAngle={Math.PI/2}
-                    maxPolarAngle={Math.PI/2}  
-                />
-            </Canvas>
-        </div>
       );
 }
  

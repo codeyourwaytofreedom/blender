@@ -30,7 +30,7 @@ const antennas = [1,2]
 
 loader.load(
 	// resource URL
-	'/bike10.svg',
+	'/1.svg',
 	// called when the resource is loaded
 	function ( data ) {
 		const paths = data.paths;
@@ -60,6 +60,7 @@ const Butterfly1 = () => {
 
     return ( 
         <>
+        <group>
         <mesh>
             <boxGeometry args={[0.1,0.1,0.1]}/>
             <meshBasicMaterial color={"navy"} />
@@ -80,7 +81,7 @@ const Butterfly1 = () => {
                 )
             }
         </group>
-
+        </group>
         </>
      );
 }
