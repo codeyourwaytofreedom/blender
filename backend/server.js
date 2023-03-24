@@ -5,29 +5,27 @@ const cors = require('cors');
 
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-/* const io = new Server(server, {
-    cors: {
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"]
-    }
-  }); */
 
-  const io = new Server(server, {
-    cors: {
-      origin: "https://blender-codeyourwaytofreedom.vercel.app",
-      methods: ["GET", "POST"]
-    }
-  });
+const io = new Server(server, {
+  cors: {
+    origin: ["https://blender-codeyourwaytofreedom.vercel.app", "http://localhost:3000"],
+    methods: ["GET", "POST"]
+  }
+});
+  
+const min = 0.5;
+const max = 2;
+
 
 app.use(cors({ origin: true, credentials: true }));
 
 io.on('connection', (socket) => {
   console.log('connected');
 
-  // on message
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-    io.emit('chat message', "I am happy to help you. how can I help?");
+  // when scaling index requested
+  socket.on('request_scaling_index', () => {
+    const random_scaling_index = Math.random() * (max - min) + min;
+    io.emit('scaling_index', random_scaling_index);
   });
 });
 
