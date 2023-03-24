@@ -12,16 +12,24 @@ import MyComponent from "./Instances";
 import Sphere from "./Sphere";
 import Cylinder from "./Cylinder";
 import { Suspense } from "react";
+import { useEffect, useRef } from "react";
+import { useState } from "react";
+import { io, Socket } from "socket.io-client";
+
+
+const socket: Socket = io("http://localhost:9000");
 
 const Home_page = () => {
+    const scaling_index = 1;
+    socket.connect();
     return ( 
         <>
         <div className={h.home}>
             <Suspense fallback={null}>
                 <Canvas>
-                    <Cube scaling_index={1}/>
-                    <Sphere scaling_index={1} />
-                    <Cylinder scaling_index={1} />
+                    <Cube scaling_index={scaling_index}/>
+                    <Sphere scaling_index={scaling_index} />
+                    <Cylinder scaling_index={scaling_index} />
                 </Canvas>
             </Suspense>
         </div> 

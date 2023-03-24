@@ -10,7 +10,7 @@ const Sphere:NextPage<scaling> = ({scaling_index}) => {
     const texture = useTexture("stone.jpg");
     return ( 
         <>
-        <mesh position={[0,0,0]}>
+        <mesh position={[0,0,-scaling_index/2]}>
             <sphereGeometry args={[scaling_index,90,90]}/>
             <meshBasicMaterial map={texture} />
         </mesh>
