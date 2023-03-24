@@ -9,7 +9,7 @@ type scaling = {
   }
 
 const Cylinder:NextPage<scaling> = ({scaling_index}) => {
-    const texture = useTexture("velvet.jpg");
+    const texture = useTexture("stone.jpg");
     const cylinder = useRef<Mesh>(null)
     useFrame(()=> {
         if(cylinder.current)
@@ -21,7 +21,7 @@ const Cylinder:NextPage<scaling> = ({scaling_index}) => {
         <>
         <mesh position={[scaling_index*2,0,0]} rotation={[0,0,0]} ref={cylinder}>
             <cylinderGeometry args={[scaling_index/2,scaling_index/2,scaling_index,90]}/>
-            <meshBasicMaterial map={texture} />
+            <meshBasicMaterial map={texture} color={"darkorange"}/>
         </mesh>
         </>
      );

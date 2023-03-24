@@ -9,7 +9,7 @@ type scaling = {
   }
 
 const Cube:NextPage<scaling> = ({scaling_index}) => {
-    const texture = useTexture("wood.jpg");
+    const texture = useTexture("stone.jpg");
     const cube = useRef<Mesh>(null)
     useFrame(()=> {
         if(cube.current)
@@ -21,7 +21,7 @@ const Cube:NextPage<scaling> = ({scaling_index}) => {
         <>
         <mesh position={[-scaling_index*2,0,0]} rotation={[0,0,0]} ref={cube}>
             <boxGeometry args={[scaling_index,scaling_index,scaling_index]}/>
-            <meshBasicMaterial map={texture}/>
+            <meshBasicMaterial map={texture} color={"crimson"}/>
         </mesh>
         </>
      );

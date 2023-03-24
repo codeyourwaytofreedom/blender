@@ -15,7 +15,7 @@ const io = new Server(server, {
 app.use(cors({ origin: true, credentials: true }));
 
 io.on('connection', (socket) => {
-  console.log('again');
+  console.log('connected');
 
   // on message
   socket.on('chat message', (msg) => {
