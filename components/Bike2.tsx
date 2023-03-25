@@ -38,7 +38,7 @@ const Bike2 = () => {
             <boxGeometry args={[0.1,0.1,0.1]}/>
             <meshBasicMaterial color={"navy"} />
         </mesh>
-        <group position={[0.9,0.7,0]} scale={1} onPointerEnter={()=> console.log(555)}>
+        <group position={[0.9,0.7,0]} scale={0.9} onPointerEnter={()=> console.log(555)}>
             {
                 blocks.map ((b,i) => !excluded.includes(i) && 
                 <mesh position={[0,0,0]} scale={sscale} key={i} rotation={[0,0,Math.PI]} onClick={(e)=>{

@@ -18,23 +18,26 @@ socket.connect();
 
 
 const Home_page = () => {
+  const [index, setIndex] = useState<number>(1)
     return ( 
         <>
         <div className={h.home}>
-          <div style={{width:"300px", height:"300px", right:"30vw", position:"absolute"}}>
-              <Canvas>
-                <Svg src={"/1.svg"} scale={0.0051} position={[0,0,0]}/>
-                <Butterfly_flying />
-              </Canvas>
+          <div className={h.mini}>
+            <span id={h.click} onClick={
+              ()=> index === 1 ? setIndex(2) : index === 2 ? setIndex(3) : setIndex(1)
+            }></span>
+            <Canvas>
+              <Svg src={`${index}.svg`} scale={0.005} position={[0,0,0]}/>
+              <Butterfly_flying color={index === 1 ? "green" : index === 2 ? "red" : "#47BED8"}/>
+            </Canvas>
           </div>
-                <Canvas >
-                
-                    {/* <Butterfly1 /> */}
-                    <Bike1/>
-                    {/* <Bike2/> */}
-                    {/* <Bike3/> */}
-                    <OrbitControls/>
-                </Canvas>
+              <Canvas>
+                  {/* <Butterfly1 /> */}
+                  {
+                    index === 1 ? <Bike1/> : index === 2 ? <Bike2/> : <Bike3/>
+                  }
+                  <OrbitControls maxDistance={4} minDistance={3.5}/>
+              </Canvas>
         </div> 
         </>
 
