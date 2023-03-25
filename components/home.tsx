@@ -8,6 +8,7 @@ import io from "socket.io-client";
 import { useEffect } from "react";
 import h from "../styles/home.module.css";
 import * as THREE from 'three';
+import Butterfly1 from "./butterfly1";
 
 
 const socket: Socket = io("http://localhost:80");
@@ -37,15 +38,8 @@ const Home_page = () => {
     return ( 
         <>
         <div className={h.home}>
-            <div className={h.controls}>
-            <button onClick={handle_click}>Random Scaling Index from Node Backend</button>
-            <h1>{scaling_index.toString().substring(0,4)}</h1> 
-            </div>
-
-                <Canvas   camera={{ zoom: 20, position: [0, 0, 100] }}>
-                    <Cube scaling_index={scaling_index??1}/>
-                    <Sphere scaling_index={scaling_index??1} />
-                    <Cylinder scaling_index={scaling_index??1} />
+                <Canvas >
+                    <Butterfly1 />
                 </Canvas>
         </div> 
         </>
