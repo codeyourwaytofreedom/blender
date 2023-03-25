@@ -7,10 +7,10 @@
 
 
 .mini{
-    width: 300px;
+    width: 400px;
     aspect-ratio: 1/1;
     position: absolute;
-    right: 25vw;
+    right: 20vw;
     top:7vw;
 }
 
@@ -19,8 +19,8 @@
     height:120px;
     display: block;
     position: absolute;
-    right: 30px;
-    bottom: 30px;
+    right: 18%;
+    top: 20%;
     z-index: 999;
     cursor: pointer;
 }

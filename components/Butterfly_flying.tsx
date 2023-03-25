@@ -63,7 +63,7 @@ const Butterfly_flying:NextPage<color> = ({color}) => {
 
     return ( 
         <>
-        <group scale={0.3} rotation={[0.5,0,0]} position={[1.5,0.7,0]}>
+        <group scale={0.35} rotation={[0.5,0,0]} position={[1.5,0.7,0]}>
             <group scale={2} rotation={[0,angle,0]} position={[-1.1-angle/3,0,0+angle/7]}>
                 <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
                     {

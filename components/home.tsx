@@ -32,7 +32,6 @@ const Home_page = () => {
             </Canvas>
           </div>
               <Canvas>
-                  {/* <Butterfly1 /> */}
                   {
                     index === 1 ? <Bike1/> : index === 2 ? <Bike2/> : <Bike3/>
                   }
