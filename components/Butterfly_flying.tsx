@@ -68,7 +68,7 @@ const Butterfly_flying = () => {
 
     return ( 
         <>
-        <group scale={0.3} rotation={[0.5,0,0]}>
+        <group scale={0.3} rotation={[0.5,0,0]} position={[1.5,0.7,0]}>
             <group scale={2} rotation={[0,angle,0]} position={[-1.1-angle/3,0,0+angle/7]}>
                 <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
                     <group>
@@ -133,135 +133,6 @@ const Butterfly_flying = () => {
             </group>
         </group>
 
-        <group position={[2,1,0]} scale={0.2} rotation={[0.5,0,0]}>
-            <group scale={2} rotation={[0,angle,0]} position={[-1.1-angle/3,0,0+angle/7]}>
-                <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
-                    <group>
-                    {
-                            blocks.map ((b,i) => i === 12 && 
-                            <mesh scale={sscale} key={i}  onClick={(e)=>{
-                                e.stopPropagation();
-                                console.log(i); 
-                                setExcluded([...excluded, i]);
-                                remaining.push(i);
-                                console.log(remaining)
-                                }}>
-                                <extrudeGeometry args={[b.shp, extrudeSettings]}/>            
-                                <meshBasicMaterial color={"green"} />
-                            </mesh> 
-                            )
-                        }
-                    </group>
-                </group>        
-            </group>
-
-            <group scale={2} rotation={[-Math.PI/25,0,0]} position={[-1,0,-angle]}>
-                <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
-                    <group>
-                    {
-                            blocks.map ((b,i) => i === 15 && 
-                            <mesh scale={sscale} key={i}  onClick={(e)=>{
-                                e.stopPropagation();
-                                console.log(i); 
-                                setExcluded([...excluded, i]);
-                                remaining.push(i);
-                                console.log(remaining)
-                                }}>
-                                <extrudeGeometry args={[b.shp, extrudeSettings2]}/>            
-                                <meshBasicMaterial color={"black"} />
-                            </mesh> 
-                            )
-                        }
-                    </group>
-                </group>        
-            </group>
-
-            <group scale={2} rotation={[0,-angle,0]} position={[1.1+angle/3,0,0+angle/7]}>
-                <group rotation={[Math.PI,0,0]} position={[-1.8,1.3,0]}>
-                    <group>
-                        {
-                            blocks.map ((b,i) => i === 6 && 
-                            <mesh scale={sscale} key={i}  onClick={(e)=>{
-                                e.stopPropagation();
-                                console.log(i); 
-                                setExcluded([...excluded, i]);
-                                remaining.push(i);
-                                console.log(remaining)
-                                }}>
-                                <extrudeGeometry args={[b.shp, extrudeSettings]}/>            
-                                <meshBasicMaterial color={"green"} />
-                            </mesh> 
-                            )
-                        }
-                    </group>
-                </group>        
-            </group>
-        </group>
-
-        <group position={[-2,1,0]} scale={0.2} rotation={[0.5,0,0]}>
-            <group scale={2} rotation={[0,angle,0]} position={[-1.1-angle/3,0,0+angle/7]}>
-                <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
-                    <group>
-                    {
-                            blocks.map ((b,i) => i === 12 && 
-                            <mesh scale={sscale} key={i}  onClick={(e)=>{
-                                e.stopPropagation();
-                                console.log(i); 
-                                setExcluded([...excluded, i]);
-                                remaining.push(i);
-                                console.log(remaining)
-                                }}>
-                                <extrudeGeometry args={[b.shp, extrudeSettings]}/>            
-                                <meshBasicMaterial color={"navy"} />
-                            </mesh> 
-                            )
-                        }
-                    </group>
-                </group>        
-            </group>
-
-            <group scale={2} rotation={[-Math.PI/25,0,0]} position={[-1,0,-angle]}>
-                <group rotation={[Math.PI,0,0]} position={[-0.8,1.3,0]}>
-                    <group>
-                    {
-                            blocks.map ((b,i) => i === 15 && 
-                            <mesh scale={sscale} key={i}  onClick={(e)=>{
-                                e.stopPropagation();
-                                console.log(i); 
-                                setExcluded([...excluded, i]);
-                                remaining.push(i);
-                                console.log(remaining)
-                                }}>
-                                <extrudeGeometry args={[b.shp, extrudeSettings2]}/>            
-                                <meshBasicMaterial color={"black"} />
-                            </mesh> 
-                            )
-                        }
-                    </group>
-                </group>        
-            </group>
-
-            <group scale={2} rotation={[0,-angle,0]} position={[1.1+angle/3,0,0+angle/7]}>
-                <group rotation={[Math.PI,0,0]} position={[-1.8,1.3,0]}>
-                    <group>
-                        {
-                            blocks.map ((b,i) => i === 6 && 
-                            <mesh scale={sscale} key={i}  onClick={(e)=>{
-                                e.stopPropagation();
-                                console.log(i); 
-                                setExcluded([...excluded, i]);
-                                remaining.push(i);
-                                console.log(remaining)
-                                }}>
-                                <extrudeGeometry args={[b.shp, extrudeSettings]}/>            
-                                <meshBasicMaterial color={"navy"} />
-                            </mesh> 
-                            )
-                        }
-                    </group>
-                </group>        
-            </group>
-        </group>
         </>
      );
 }

@@ -12,7 +12,7 @@ type path = {
 const blocks:path[] = [];
 const sscale:Vector3 = new Vector3(0.005, 0.005, 0.005);
 loader.load(
-	'/3.svg',
+	'/n1.svg',
 	function ( data ) {
 		const paths = data.paths;
         for (let index = 0; index < paths.length; index++) {
