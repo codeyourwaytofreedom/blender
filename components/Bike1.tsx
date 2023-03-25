@@ -1,18 +1,21 @@
 import { Shape } from "three";
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+const loader = new SVGLoader();
 import { Vector3 } from "three";
 import { useState } from "react";
 import { Color } from "three";
 
-const loader = new SVGLoader();
+
 type path = {
     color: Color;
     shp:Shape;
   }
+
 const blocks:path[] = [];
 const sscale:Vector3 = new Vector3(0.005, 0.005, 0.005);
+
 loader.load(
-	'/3.svg',
+	'/1.svg',
 	function ( data ) {
 		const paths = data.paths;
         for (let index = 0; index < paths.length; index++) {
@@ -28,9 +31,8 @@ loader.load(
 );
 
 const extrudeSettings = { depth: 70, bevelEnabled: true, bevelSegments: 9, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
-const Butterfly1 = () => {
-    const [excluded, setExcluded] = useState<number[]>([]);
+const Bike1 = () => {
+    const [excluded, setExcluded] = useState<number[]>([0]);
     return ( 
         <>
         <group>
@@ -43,7 +45,6 @@ const Butterfly1 = () => {
                 blocks.map ((b,i) => !excluded.includes(i) && 
                 <mesh position={[0,0,0]} scale={sscale} key={i} rotation={[0,0,Math.PI]} onClick={(e)=>{
                     e.stopPropagation();
-                    console.log(i); 
                     setExcluded([...excluded, i]);
                     }}>
                     <extrudeGeometry args={[b.shp, extrudeSettings]}/>            
@@ -56,4 +57,4 @@ const Butterfly1 = () => {
         </>
      );
 }
-export default Butterfly1;
+export default Bike1;

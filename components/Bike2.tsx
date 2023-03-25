@@ -12,7 +12,7 @@ type path = {
 const blocks:path[] = [];
 const sscale:Vector3 = new Vector3(0.005, 0.005, 0.005);
 loader.load(
-	'/3.svg',
+	'/2.svg',
 	function ( data ) {
 		const paths = data.paths;
         for (let index = 0; index < paths.length; index++) {
@@ -29,8 +29,8 @@ loader.load(
 
 const extrudeSettings = { depth: 70, bevelEnabled: true, bevelSegments: 9, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
-const Butterfly1 = () => {
-    const [excluded, setExcluded] = useState<number[]>([]);
+const Bike2 = () => {
+    const [excluded, setExcluded] = useState<number[]>([0]);
     return ( 
         <>
         <group>
@@ -38,7 +38,7 @@ const Butterfly1 = () => {
             <boxGeometry args={[0.1,0.1,0.1]}/>
             <meshBasicMaterial color={"navy"} />
         </mesh>
-        <group position={[1,1,0]} scale={1} onPointerEnter={()=> console.log(555)}>
+        <group position={[0.9,0.7,0]} scale={1} onPointerEnter={()=> console.log(555)}>
             {
                 blocks.map ((b,i) => !excluded.includes(i) && 
                 <mesh position={[0,0,0]} scale={sscale} key={i} rotation={[0,0,Math.PI]} onClick={(e)=>{
@@ -56,4 +56,4 @@ const Butterfly1 = () => {
         </>
      );
 }
-export default Butterfly1;
+export default Bike2;
